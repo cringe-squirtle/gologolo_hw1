@@ -21,11 +21,17 @@ export const AppsterCallback = {
     // SOME CALLBACKS ARE SETUP AT THE START BECAUSE THE 
     // CONTROLS ARE DECLARED INSIDE index.html
     APPSTER_PROCESS_CREATE_NEW_WORK: "processCreateNewWork",
+    APPSTER_PROCESS_CANCEL_CREATE_NEW_WORK: "processCancelCreateNewWork",
+    APPSTER_PROCESS_CONFIRM_CREATE_NEW_WORK: "processConfirmCreateNewWork",
+    APPSTER_PROCESS_HIDE_OK_CREATE_NEW_WORK: "processHideOKCreateNewWork",
     APPSTER_PROCESS_EDIT_WORK: "processEditWork",
     APPSTER_PROCESS_GO_HOME: "processGoHome",
     APPSTER_PROCESS_DELETE_WORK: "processDeleteWork",
     APPSTER_PROCESS_CONFIRM_DELETE_WORK: "processConfirmDeleteWork",
-    APPSTER_PROCESS_CANCEL_DELETE_WORK: "processCancelDeleteWork"
+    APPSTER_PROCESS_CANCEL_DELETE_WORK: "processCancelDeleteWork",
+    APPSTER_PROCESS_UPDATE_WORK_NAME: "processUpdateWorkName",
+    APPSTER_PROCESS_CANCEL_UPDATE_WORK_NAME: "processCancelUpdateWorkName",
+    APPSTER_PROCESS_CONFIRM_UPDATE_WORK_NAME: "processConfirmUpdateWorkName",
 };
 
 /**
@@ -101,7 +107,21 @@ export const AppsterGUIId = {
     APPSTER_TEXT_INPUT_MODAL_TEXTFIELD: "appster_text_input_modal_textfield",
     APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON: 'appster_text_input_modal_enter_button',
     APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON: 'appster_text_input_modal_cancel_button',
-    APPSTER_TEXT_INPUT_MODAL_FOOTER: 'appster_text_input_modal_footer'
+    APPSTER_TEXT_INPUT_MODAL_FOOTER: 'appster_text_input_modal_footer',
+    APPSTER_CONFIRM_MODAL2: 'appster_confirm_modal2',
+    APPSTER_CONFIRM_MODAL_FRAME2: 'appster_confirm_modal_frame2',
+    APPSTER_CONFIRM_MODAL_HEADER2: 'appster_confirm_modal_header2',
+    APPSTER_CONFIRM_MODAL_SECTION2: 'appster_confirm_modal_section2',
+    APPSTER_CONFIRM_MODAL_OK_BUTTON2: 'appster_confirm_modal_ok_button2',
+    APPSTER_CONFIRM_MODAL_FOOTER2: 'appster_confirm_frame2',
+    APPSTER_TEXT_INPUT_MODAL2: 'appster_text_input_modal2',
+    APPSTER_TEXT_INPUT_MODAL_FRAME2: 'appster_text_input_modal_frame2',
+    APPSTER_TEXT_INPUT_MODAL_HEADER2: 'appster_text_input_modal_header2',
+    APPSTER_TEXT_INPUT_MODAL_SECTION2: 'appster_text_input_modal_section2',
+    APPSTER_TEXT_INPUT_MODAL_TEXTFIELD2: "appster_text_input_modal_textfield2",
+    APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON2: 'appster_text_input_modal_enter_button2',
+    APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON2: 'appster_text_input_modal_cancel_button2',
+    APPSTER_TEXT_INPUT_MODAL_FOOTER2: 'appster_text_input_modal_footer2'
 };
 
 /**
@@ -118,7 +138,8 @@ export const AppsterHTML = {
     DATA_ANIMATION: "data-animation",
     DIV: "div",
     HEADER: "header",
-    H1: "h1", H2: "h2", H3: "h3", H4: "h4", H5: "h5", H6: "h6",  
+    FOOTER: "footer",
+    H1: "h1", H2: "h2", H3: "h3", H4: "h4", H5: "h5", H6: "h6",
     HIDDEN: "hidden",
     ID: "id",
     INPUT: "input",
@@ -142,8 +163,9 @@ export const AppsterHTML = {
   * use in place of icons. They are easy to use, are language independent,
   * and scale well.
   */
- export const AppsterSymbols = {
-    DELETE: "&#128465;"     // TRASH SYMBOL
+export const AppsterSymbols = {
+    DELETE: "&#128465;",     // TRASH SYMBOL
+    EDIT: "Edit Text ✎"
 };
 
 export const AppsterText = {
@@ -163,9 +185,10 @@ export const AppsterText = {
     APPSTER_CONFIRM_MODAL_FOOTER_TEXT: "appster_confirm_modal_footer_text",
 
     APPSTER_TEXT_INPUT_MODAL_PROMPT_TEXT: "appster_text_input_modal_prompt_text",
+    APPSTER_TEXT_INPUT_MODAL_PROMPT_TEXT2: "appster_text_input_modal_prompt_text2",
     APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON_TEXT: "appster_text_input_modal_enter_button_text",
     APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON_TEXT: "appster_text_input_modal_cancel_button_text",
     APPSTER_TEXT_INPUT_MODAL_FOOTER_TEXT: "appster_text_input_modal_footer_text",
-
+    APPSTER_TEXT_INPUT_MODAL_FOOTER_TEXT2: "appster_text_input_modal_footer_text2",
     APPSTER_MODAL_ANIMATION_TEXT: "appster_slideInOutLeft"
 }

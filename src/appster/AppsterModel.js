@@ -21,7 +21,12 @@ export default class AppsterModel {
     }
 
     goHome() {
+        this.currentWork = null;
         this.view.goToHomeScreen();
+    }
+
+    goList() {
+        this.view.goToEditScreen();
     }
 
     editWork(workNameToEdit) {
@@ -34,8 +39,9 @@ export default class AppsterModel {
             this.moveWorkToTop(this.workToEdit);
 
             // LOAD DATA INTO THE UI
-            this.view.loadWork(this.workToEdit); 
+            this.view.loadWork(this.workToEdit);
 
+            this.currentWork = work;
             // CHANGE THE SCREEN
             this.view.goToEditScreen();
         }
@@ -48,10 +54,10 @@ export default class AppsterModel {
             let appWork = this.buildAppWork(jsonData.recent_work, workData.name);
             this.recentWork.push(appWork);
         }
-        
+
         // ALL RECENT WORK HAS BEEN LOADED FROM THE
         // JSON FILE, NOW WE CAN UPDATE THE VIEW
-        this.view.refreshRecentWork(this.recentWork);        
+        this.view.refreshRecentWork(this.recentWork);
     }
 
     /**
@@ -122,5 +128,9 @@ export default class AppsterModel {
         this.listToEdit = this.createNewWork();
         this.prependList(this.listToEdit);
         this.view.loadListData(this.listToEdit);
+    }
+
+    getWorkToEdit() {
+        return this.workToEdit;
     }
 }

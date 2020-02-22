@@ -16,4 +16,5 @@ let controller = new GoLogoLoController();
 
 // MAKE THE APP AND LAUNCH IT
 let app = new GoLogoLoApp(model, view, controller);
+window.todo = app;
 app.launch("./src/gologolo/GoLogoLoData.json");

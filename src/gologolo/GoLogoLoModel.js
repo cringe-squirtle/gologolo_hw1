@@ -8,8 +8,9 @@ export default class GoLogoLoModel extends AppsterModel {
     }
 
     createNewWork(workName) {
-        let newRandomText = new GoLogoLoText(workName);
-        return newRandomText;
+        let appWork = new GoLogoLoLogo();
+        appWork.setName(workName);
+        this.appendWork(appWork);
     }
 
     loadWorkData(workToLoad) {
@@ -44,7 +45,12 @@ export default class GoLogoLoModel extends AppsterModel {
         return appWork;
     }
 
-    updateText() {
- //       this.view.
+    updateText(workBeingEdited, newName) {
+        // WE'RE GOING TO CHANGE THE NAME TOO BUT ONLY UPDATE
+        // THE LIST OF LIST LINKS IF IT'S CHANGED
+        if (workBeingEdited.getText() != newName) {
+            workBeingEdited.setText(newName);
+            this.editWork(workBeingEdited.getName());
+        }
     }
 }

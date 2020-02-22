@@ -1,4 +1,5 @@
-import {AppsterCallback, AppsterGUIId, AppsterHTML} from './AppsterConstants.js'
+import { AppsterCallback, AppsterGUIId, AppsterHTML } from './AppsterConstants.js'
+import { GoLogoLoDefaults, GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText } from '../gologolo/GoLogoLoConstants.js'
 
 export default class AppsterController {
     constructor() {
@@ -36,8 +37,18 @@ export default class AppsterController {
         this.registerEventHandler(AppsterGUIId.APPSTER_EDIT_TRASH, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_DELETE_WORK]);
 
         // AND THE MODAL BUTTONS
-        this.registerEventHandler(AppsterGUIId.DIALOG_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
-        this.registerEventHandler(AppsterGUIId.DIALOG_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_CREATE_NEW_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_CREATE_NEW_WORK]);
+
+        this.registerEventHandler(AppsterGUIId.APPSTER_CONFIRM_MODAL_OK_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_HIDE_OK_CREATE_NEW_WORK]);
+
+        this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_UPDATE_WORK_NAME]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON2, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_UPDATE_WORK_NAME]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON2, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_UPDATE_WORK_NAME]);
+
     }
 
     /**
@@ -90,9 +101,9 @@ export default class AppsterController {
         console.log("processCreateNewWork");
 
         // PROMPT FOR THE NAME OF THE NEW LIST
-        
+
         // MAKE A BRAND NEW LIST
-        this.model.goList();
+        window.todo.model.view.showText();
     }
 
     /**
@@ -121,7 +132,7 @@ export default class AppsterController {
      */
     processCancelDeleteWork() {
         // JUST HIDE THE DIALOG
-
+        window.todo.model.view.hideDialog();
     }
 
     /**
@@ -142,10 +153,10 @@ export default class AppsterController {
      */
     processConfirmDeleteWork() {
         // DELETE THE WORK
-        this.model.removeWork(this.model.getWorkToEdit());
-
+        window.todo.model.removeWork(window.todo.model.getWorkToEdit());
+        window.todo.model.view.hideDialog();
         // GO BACK TO THE HOME SCREEN
-        this.model.goHome();
+        window.todo.model.goHome();
     }
 
     /**
@@ -156,5 +167,46 @@ export default class AppsterController {
     processDeleteWork() {
         // VERIFY VIA A DIALOG BOX
         window.todo.model.view.showDialog();
+    }
+
+
+    processCancelCreateNewWork() {
+        window.todo.model.view.hideText();
+    }
+
+    processConfirmCreateNewWork() {
+        let input = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_TEXTFIELD).value;
+        if (input == null || input == "" || window.todo.model.getRecentWork(input) != null) {
+            window.todo.model.view.hideText();
+            window.todo.model.view.showOK();
+        }
+        else {
+            window.todo.model.createNewWork(input);
+            window.todo.model.view.hideText();
+            window.todo.model.editWork(input);
+        }
+    }
+
+    processHideOKCreateNewWork() {
+        window.todo.model.view.hideOK();
+        window.todo.model.view.showText();
+    }
+
+    processUpdateWorkName() {
+        window.todo.model.view.showUpdateEditText();
+    }
+
+    processCancelUpdateWorkName() {
+        window.todo.model.view.hideUpdateEditText();
+    }
+
+
+    processConfirmUpdateWorkName() {
+        let text = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_TEXTFIELD2).value;
+        let work = window.todo.model.currentWork;
+        console.log(work)
+        window.todo.model.updateText(work, text);
+        console.log(work)
+        window.todo.model.view.hideUpdateEditText();
     }
 }
