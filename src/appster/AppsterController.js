@@ -1,5 +1,4 @@
 import { AppsterCallback, AppsterGUIId, AppsterHTML } from './AppsterConstants.js'
-import { GoLogoLoDefaults, GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText } from '../gologolo/GoLogoLoConstants.js'
 
 export default class AppsterController {
     constructor() {
@@ -45,7 +44,6 @@ export default class AppsterController {
 
         this.registerEventHandler(AppsterGUIId.APPSTER_CONFIRM_MODAL_OK_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_HIDE_OK_CREATE_NEW_WORK]);
 
-        this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_UPDATE_WORK_NAME]);
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON2, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_UPDATE_WORK_NAME]);
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON2, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_UPDATE_WORK_NAME]);
 

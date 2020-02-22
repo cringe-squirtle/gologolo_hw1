@@ -64,6 +64,7 @@ export default class GoLogoLoView extends AppsterView {
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
         fontSizeSlider.onchange = (e) => {
+            console.log(textDiv)
             textDiv.style.fontSize = e.target.value + "px";
             work.setFontSize(e.target.value);
         }
