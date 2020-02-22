@@ -1,5 +1,5 @@
 import { GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText } from './GoLogoLoConstants.js'
-import { AppsterHTML, AppsterSymbols } from '../appster/AppsterConstants.js'
+import { AppsterHTML, AppsterSymbols, AppsterGUIId } from '../appster/AppsterConstants.js'
 import AppsterView from '../appster/AppsterView.js'
 
 export default class GoLogoLoView extends AppsterView {
@@ -59,14 +59,19 @@ export default class GoLogoLoView extends AppsterView {
     }
 
     loadWork(work) {
+
         let textDiv = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
         textDiv.innerHTML = work.getText();
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
         fontSizeSlider.onchange = (e) => {
-            console.log(textDiv)
             textDiv.style.fontSize = e.target.value + "px";
-            work.setFontSize(e.target.value);
+            if (this.foolProof()) {
+                textDiv.style.fontSize = work.getFontSize() + "px";
+                fontSizeSlider.value = work.getFontSize();
+            }
+            else
+                work.setFontSize(e.target.value);
         }
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
@@ -96,21 +101,50 @@ export default class GoLogoLoView extends AppsterView {
         borderThicknessSlider.value = work.getBorderThickness();
         borderThicknessSlider.onchange = (e) => {
             textDiv.style.borderWidth = e.target.value + "px";
-            work.setBorderThickness(e.target.value)
+            if (this.foolProof()) {
+                textDiv.style.borderWidth = work.getBorderThickness() + "px";
+                borderThicknessSlider.value = work.getBorderThickness();
+            }
+            else
+                work.setBorderThickness(e.target.value)
         }
         let paddingSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER);
         paddingSlider.value = work.getPadding();
         paddingSlider.onchange = (e) => {
             textDiv.style.padding = e.target.value + "px";
-            work.setPadding(e.target.value)
+            if (this.foolProof()) {
+                textDiv.style.padding = work.getPadding() + "px";
+                paddingSlider.value = work.getPadding();
+            }
+            else
+                work.setPadding(e.target.value)
         }
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
         marginSlider.onchange = (e) => {
             textDiv.style.margin = e.target.value + "px";
-            work.setMargin(e.target.value)
+            if (this.foolProof()) {
+                textDiv.style.margin = work.getMargin() + "px";
+                marginSlider.value = work.getMargin();
+            }
+            else
+                work.setMargin(e.target.value)
         }
         this.loadWorkStyle(work);
+    }
+
+    foolProof() {
+        let parentDiv = document.getElementById(AppsterGUIId.APPSTER_ROOT_DIV);
+        let textDiv = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
+
+        let parentRight = parentDiv.getBoundingClientRect().right;
+        let textRight = textDiv.getBoundingClientRect().right;
+        let parentBot = parentDiv.getBoundingClientRect().bottom;
+        let textBot = textDiv.getBoundingClientRect().bottom;
+
+        if (parentRight < textRight || parentBot < textBot)
+            return true;
+        return false;
     }
 
     loadWorkStyle(work) {
