@@ -66,12 +66,9 @@ export default class GoLogoLoView extends AppsterView {
         fontSizeSlider.value = work.getFontSize();
         fontSizeSlider.onchange = (e) => {
             textDiv.style.fontSize = e.target.value + "px";
-            if (this.foolProof()) {
-                textDiv.style.fontSize = work.getFontSize() + "px";
-                fontSizeSlider.value = work.getFontSize();
-            }
-            else
-                work.setFontSize(e.target.value);
+
+            work.setFontSize(e.target.value)
+
         }
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
@@ -101,34 +98,19 @@ export default class GoLogoLoView extends AppsterView {
         borderThicknessSlider.value = work.getBorderThickness();
         borderThicknessSlider.onchange = (e) => {
             textDiv.style.borderWidth = e.target.value + "px";
-            if (this.foolProof()) {
-                textDiv.style.borderWidth = work.getBorderThickness() + "px";
-                borderThicknessSlider.value = work.getBorderThickness();
-            }
-            else
-                work.setBorderThickness(e.target.value)
+            work.setBorderThickness(e.target.value)
         }
         let paddingSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER);
         paddingSlider.value = work.getPadding();
         paddingSlider.onchange = (e) => {
             textDiv.style.padding = e.target.value + "px";
-            if (this.foolProof()) {
-                textDiv.style.padding = work.getPadding() + "px";
-                paddingSlider.value = work.getPadding();
-            }
-            else
-                work.setPadding(e.target.value)
+            work.setPadding(e.target.value)
         }
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
         marginSlider.onchange = (e) => {
             textDiv.style.margin = e.target.value + "px";
-            if (this.foolProof()) {
-                textDiv.style.margin = work.getMargin() + "px";
-                marginSlider.value = work.getMargin();
-            }
-            else
-                work.setMargin(e.target.value)
+            work.setMargin(e.target.value)
         }
         this.loadWorkStyle(work);
     }

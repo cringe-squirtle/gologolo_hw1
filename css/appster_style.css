@@ -63,6 +63,10 @@ body {
 #appster_edit_toolbar {
     background-color: var(--swatch-complement);
 }
+
+#appster_edit_workspace {
+    overflow: scroll;
+}
 #appster_edit_heading {
     font-size: 36pt;
     cursor: pointer;
